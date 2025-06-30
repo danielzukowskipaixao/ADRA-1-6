@@ -1,0 +1,446 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilos do container */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #007824;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinhar o conteúdo mais para baixo */
+    padding-top: 30px;        /* Espaço para não cortar a logo */
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+/* Layout do conteúdo principal */
+.container {
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: backgroundColorChange 10s infinite alternate;
+}
+
+/* Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 25px;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+header .back-btn, header .profile-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #4CAF50;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+header .back-btn:hover, header .profile-btn:hover {
+    transform: scale(1.1);
+}
+
+header .logo {
+    max-width: 120px;
+    height: auto;
+    object-fit: contain;
+    padding-top: 5px; /* Pequeno espaçamento interno */
+}
+
+
+/* Main */
+main {
+    margin-top: 20px;
+}
+
+/* Título da seção */
+.title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilos para as opções de doação */
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.items label {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #555;
+    transition: color 0.3s;
+}
+
+.items label:hover {
+    color: #4CAF50;
+}
+
+.items input {
+    margin-right: 10px;
+    accent-color: #4CAF50;
+}
+
+.additional-items {
+    margin-top: 25px;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.additional-items:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.additional-items:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px #45a049;
+}
+
+/* Estilos do mapa */
+.mapa {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centraliza tudo horizontalmente */
+    gap: 10px; /* espaço entre elementos */
+}
+
+.mapa img {
+    max-width: 200px;
+    height: auto;
+}
+
+
+.map-btn {
+    margin-bottom: 15px;
+    padding: 12px;
+    background-color: #2196F3;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.map-btn:hover {
+    background-color: #1976d2;
+    transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 35px;
+    border-radius: 12px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.modal-content h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    color: #333;
+}
+
+#item-input {
+    width: 80%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#item-input:focus {
+    border-color: #4CAF50;
+}
+
+#add-item-btn {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 80%;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+#add-item-btn:hover {
+    background-color: #45a049;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+ul li {
+    background-color: #f1f1f1;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+ul li:hover {
+    background-color: #e0e0e0;
+}
+
+.feedback {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #4CAF50;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+/* Fechar os modais */
+.close-btn, .close-profile-btn, .close-options-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover, .close-profile-btn:hover, .close-options-btn:hover {
+    color: #e74c3c;
+}
+
+/* Animação do fundo do container */
+@keyframes backgroundColorChange {
+    0% { background-color: #ffffff; }
+    50% { background-color: #ffffff; }
+    100% { background-color: #ffffff; }
+}
+
+.added-items-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.added-items-container h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 20px;
+}
+
+#added-items-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#added-items-list li {
+    background-color: #e0f7e0;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #4CAF50;
+}
+
+
+/* Botão de Revisar Pedido */
+.review-items-btn {
+    margin-top: 25px;
+    padding: 12px 20px;
+    background-color: #FF5722;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.review-items-btn:hover {
+    background-color: #e64a19;
+}
+
+/* Modal de Revisão */
+#review-modal {
+    display: none;
+}
+
+#review-modal .modal-content {
+    width: 400px;
+    padding: 30px;
+}
+
+#review-modal h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#review-items-btn {
+    display: none; /* O JavaScript irá alterar para "block" quando necessário */
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #FF5722;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#review-items-btn:hover {
+    background-color: #e64a19;
+}
+
+
+
+/* Animação para itens */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#added-items-list li {
+    animation: fadeIn 0.4s ease;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 12px;
+}
+
+.remove-item-btn {
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 14px;
+}
+
+.remove-item-btn:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+#item-input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px #4CAF50;
+}
+
+.modal-content {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+button {
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.review-items-btn,
+.send-order-btn,
+.edit-order-btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+
+.submitted-order-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e8f5e9;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    animation: fadeIn 0.5s ease;
+}
+
+.submitted-order-container h3 {
+    margin-bottom: 10px;
+    color: #2e7d32;
+}
+
+#submitted-items-list li {
+    background-color: #c8e6c9;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 8px;
+    color: #2e7d32;
+}
+
+.confirmation-message {
+    margin-top: 10px;
+    color: #2e7d32;
+    font-weight: bold;
+}

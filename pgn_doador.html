@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADRA Doação</title>
+  <link rel="stylesheet" href="estilo/pgn_doador.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="top-bar">
+        <img src="imagens/advem.png" alt="Logo" class="logo" />
+        <img src="imagens/usuar.png" alt="Ícone de usuário" class="user-icon" />
+      </div>
+      <img src="imagens/adra.png" alt="Logo ADRA" class="adra-logo" />
+    </header>
+
+    <main>
+      <div class="btn" onclick="abrirModal()">
+        Lista de itens que você pode doar
+      </div>
+      <div class="btn" onclick="abrirModalTransferencia()">
+        Doação por transferência
+      </div>
+      <p class="instruction">Leve os itens até a unidade da ADRA mais próxima</p>
+      <div class="map-container">
+        <img src="imagens/mund.png" alt="Mapa" class="map-image" onclick="location.href='https://www.google.com.br/maps/';" />
+        <p class="asa">ASA mais próxima</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalDoacao" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModal()">&times;</span>
+      <h2>Itens que você pode doar</h2>
+      <ul class="modal-lista">
+        <li>Mochilas ou bolsas</li>
+        <li>Carregadores de celular</li>
+        <li>Meias e roupas íntimas novas</li>
+      </ul>
+      <div class="modal-map">
+        <img src="imagens/mund.png" alt="Mapa" onclick="window.open('https://www.google.com.br/maps/')" />
+        <p>Levar na ASA mais próxima</p>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal Transferência -->
+<div id="modalTransferencia" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModalTransferencia()">&times;</span>
+      <h2>Doação por transferência bancária</h2>
+      <div class="info">
+        <p>Banco: 001 - Banco do Brasil</p>
+        <p>Agência: 1234-5</p>
+        <p>Conta: 67890-1</p>
+        <p>Nome: ADRA Brasil</p>
+        <p>PIX: pix@adra.org.br</p>
+      </div>
+      <div class="amount">
+        <label for="valor">Deseja informar o valor da sua doação?</label>
+        <input type="number" id="valor" placeholder="Digite o valor em R$" />
+      </div>
+      <p>Após doar, leve o comprovante até a unidade da ADRA mais próxima.</p>
+    </div>
+  </div>
+      
+
+  <script>
+    function abrirModal() {
+      const modal = document.getElementById('modalDoacao');
+      modal.style.display = 'flex';
+    }
+  
+    function fecharModal() {
+      document.getElementById('modalDoacao').style.display = 'none';
+    }
+  
+    window.onclick = function (event) {
+      const modal = document.getElementById('modalDoacao');
+      if (event.target === modal) {
+        fecharModal();
+      }
+    };
+
+    function abrirModal() {
+      document.getElementById('modalDoacao').style.display = 'flex';
+    }
+
+    function fecharModal() {
+      document.getElementById('modalDoacao').style.display = 'none';
+    }
+
+    function abrirModalTransferencia() {
+      document.getElementById('modalTransferencia').style.display = 'flex';
+    }
+
+    function fecharModalTransferencia() {
+      document.getElementById('modalTransferencia').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+      const modalDoacao = document.getElementById('modalDoacao');
+      const modalTransferencia = document.getElementById('modalTransferencia');
+      if (event.target === modalDoacao) {
+        fecharModal();
+      } else if (event.target === modalTransferencia) {
+        fecharModalTransferencia();
+      }
+    };
+
+  </script>
+  
+
+</body>
+</html>

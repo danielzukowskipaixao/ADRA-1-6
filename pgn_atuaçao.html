@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADRA - Doações</title>
+    <link rel="stylesheet" href="estilo/pgn_atuaçao.css">
+</head>
+<body> 
+    <div class="container">
+        <header>
+            <button class="back-btn" aria-label="Voltar">&#8592;</button>
+            <img src="imagens/adra.png" alt="ADRA" class="logo">
+            <button class="profile-btn" id="profile-btn" aria-label="Perfil">👤</button>
+        </header>
+        
+        <main>
+            <h2 class="title">O que você precisa?</h2>
+            <div class="items">
+                <label><input type="checkbox"> Higiene</label>
+                <label><input type="checkbox"> Roupa</label>
+                <label><input type="checkbox"> Alimento</label>
+                <label><input type="checkbox"> Brinquedos</label>
+            </div>
+            <!-- Div para exibir os itens adicionados -->
+<div class="added-items-container">
+    <h3>Itens Adicionados:</h3>
+    <ul id="added-items-list"></ul>
+</div>
+<!-- Div para exibir os itens enviados -->
+<div class="submitted-order-container" id="submitted-order-container" style="display: none;">
+    <h3>Pedido Enviado:</h3>
+    <ul id="submitted-items-list"></ul>
+    <p class="confirmation-message">Seu pedido foi enviado com sucesso! ✅</p>
+</div>
+
+
+            <button class="additional-items">Adicionar Itens</button>
+            <button id="review-items-btn" class="review-items-btn" style="display: none;">Revisar Pedido</button>
+            <div class="mapa">
+                <a href="https://www.google.com/maps" target="_blank">
+                    <img src="imagens/mund.png" alt="Mapa">
+                </a>
+                <br>
+                <br>
+                <a href="https://www.google.com/maps" target="_blank" class="map-btn">Ver origem da doação</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de Adicionar Itens -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Adicionar Itens</h2>
+            <input type="text" id="item-input" placeholder="Digite o item">
+            <button id="add-item-btn">Adicionar</button>
+            <ul id="item-list"></ul>
+            <p id="add-feedback" class="feedback"></p>
+        </div>
+    </div>
+
+    <!-- Modal de Perfil -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-profile-btn">&times;</span>
+            <h2>Perfil</h2>
+            <ul>
+                <li><a href="#">Editar Perfil</a></li>
+                <li><a href="#">Configurações</a></li>
+                <li><a href="#">Histórico de Doações</a></li>
+                <li><a href="#">Sair</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal de Opções -->
+    <div id="options-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-options-btn">&times;</span>
+            <h2>Escolha as alternativas</h2>
+            <ul id="item-options-list">
+                <!-- Itens e marcas serão adicionados aqui dinamicamente -->
+            </ul>
+            <button id="send-order-btn">Enviar Pedido</button>
+        </div>
+    </div>
+
+<!-- Modal de Revisão do Pedido -->
+<div id="review-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-review-btn">&times;</span>
+        <h2>Revisar Pedido</h2>
+        <ul id="review-items-list"></ul>
+        <button id="edit-order-btn" class="edit-order-btn">Alterar Pedido</button>
+        <button id="send-order-btn" class="send-order-btn">Enviar Pedido</button>
+    </div>
+</div>
+
+
+    <script src="script/pgn_atuaçao.js"></script>
+</body>
+</html>

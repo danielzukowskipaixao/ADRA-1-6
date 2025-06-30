@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação - ADRA</title>
+    <link rel="stylesheet" href="estilo/pgn_verificaçao.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Verificação de Conta</h2>
+            <p class="waiting-msg">
+                Você está aguardando integração ao grupo de necessitados da ADRA. Isso pode levar alguns dias. Enquanto isso, divirta-se com nosso mini-jogo abaixo!
+              </p>
+
+            <p>Enviamos uma senha para o seu e-mail. Digite-a abaixo para ativar sua conta.</p>
+            <form id="verificacaoForm">
+                <label for="codigo">Código de Verificação</label>
+                <input type="text" id="codigo" required>
+                <button type="submit">Verificar</button>
+            </form>
+            <p>Não recebeu o código? <a href="#" id="reenviar">Reenviar código</a></p>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <h3>Mini-jogo: Ping Pong!</h3>
+        <canvas id="pingPongCanvas" width="400" height="250"></canvas>
+        <p>Use ↑ e ↓ para controlar sua raquete</p>
+      </div>
+
+      <script>
+        const canvas = document.getElementById("pingPongCanvas");
+        const ctx = canvas.getContext("2d");
+      
+        const paddleHeight = 60, paddleWidth = 10;
+        const player = { x: 10, y: 95 };
+        const ai = { x: canvas.width - 20, y: 95 };
+        const ball = { x: canvas.width / 2, y: canvas.height / 2, radius: 8, speed: 4, dx: 4, dy: 4 };
+      
+        document.addEventListener("keydown", e => {
+          if (e.key === "ArrowUp") player.y -= 20;
+          if (e.key === "ArrowDown") player.y += 20;
+        });
+      
+        function drawRect(x, y, w, h, color) {
+          ctx.fillStyle = color;
+          ctx.fillRect(x, y, w, h);
+        }
+      
+        function drawCircle(x, y, r, color) {
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2, false);
+          ctx.closePath();
+          ctx.fill();
+        }
+      
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          drawRect(player.x, player.y, paddleWidth, paddleHeight, "#4CAF50");
+          drawRect(ai.x, ai.y, paddleWidth, paddleHeight, "#e74c3c");
+          drawCircle(ball.x, ball.y, ball.radius, "#333");
+        }
+      
+        function moveBall() {
+          ball.x += ball.dx;
+          ball.y += ball.dy;
+      
+          // Rebater nas paredes
+          if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0)
+            ball.dy *= -1;
+      
+          // IA simples
+          ai.y += ((ball.y - (ai.y + paddleHeight / 2))) * 0.1;
+      
+          // Colisão com jogador
+          if (
+            ball.x - ball.radius < player.x + paddleWidth &&
+            ball.y > player.y &&
+            ball.y < player.y + paddleHeight
+          ) ball.dx *= -1;
+      
+          // Colisão com IA
+          if (
+            ball.x + ball.radius > ai.x &&
+            ball.y > ai.y &&
+            ball.y < ai.y + paddleHeight
+          ) ball.dx *= -1;
+      
+          // Pontuação (reseta)
+          if (ball.x < 0 || ball.x > canvas.width) {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            ball.dx = -ball.dx;
+          }
+        }
+      
+        function gameLoop() {
+          draw();
+          moveBall();
+          requestAnimationFrame(gameLoop);
+        }
+      
+        gameLoop();
+      </script>
+      
+
+    
+    <script>
+        document.getElementById('verificacaoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const codigo = document.getElementById('codigo').value;
+            
+            if (codigo === "123456") { // Simulação de código correto
+                alert('Conta verificada com sucesso!');
+                window.location.href = 'dashboard.html'; // Redireciona para a página principal
+            } else {
+                alert('Código incorreto. Tente novamente.');
+            }
+        });
+        
+        document.getElementById('reenviar').addEventListener('click', function(event) {
+            event.preventDefault();
+            alert('Um novo código foi enviado para seu e-mail.');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background-image: url(https://img.freepik.com/fotos-gratis/vista-superior-da-mao-de-papel-segurando-um-coracao-com-espaco-de-copia_23-2148635148.jpg?t=st=1728651939~exp=1728655539~hmac=401cbc6664ff55177816f33e6a1b4fe0ff69e4f96f879491fb54d353d1f22fc0&w=826);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+}
+
+.container {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    margin: 200px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-adventista {
+    width: 40px;
+    height: 40px;
+}
+
+.user-icon {
+    position: absolute;
+    top: 20px; /* Ajuste a distância do topo */
+    right: 20px; /* Ajuste a distância da lateral direita */
+    width: 50px; /* Defina o tamanho da imagem */
+    height: auto;
+    border-radius: 30px;
+}
+
+
+.logo-center {
+    margin: 20px 0;
+}
+
+.adra-logo {
+    width: 100px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #e0e0e0;
+}
+
+.description {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.btn-more {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-more:hover {
+    background-color: #333;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background.png');
+    background-size: cover;
+    opacity: 0.1;
+    border-radius: 20px;
+    z-index: -1;
+}

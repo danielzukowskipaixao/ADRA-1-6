@@ -1,0 +1,81 @@
+.header {
+  position: relative; /* Define o contexto para os elementos posicionados absolutametne */
+}
+
+#login-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* para garantir que fique visível sobre outros elementos */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: rgb(173, 173, 173);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.modal label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.modal input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.4rem;
+  border: 1px solid #686868;
+  border-radius: 6px;
+}
+
+.modal button[type="submit"] {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1751bd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal button[type="submit"]:hover {
+  background-color: #0c2f70;
+}
+
+.close-button {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
