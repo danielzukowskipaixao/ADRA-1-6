@@ -1,0 +1,51 @@
+/* Novas classes animadas */
+
+
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Subtítulo */
+.subtitulo {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #c62828;
+}
+
+/* Cores das listas */
+.verde li {
+  color: green;
+}
+.vermelho li {
+  color: #b71c1c;
+}
+
+/* Mapa responsivo */
+.map-frame {
+  width: 100%;
+  height: 250px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin-top: 10px;
+}
