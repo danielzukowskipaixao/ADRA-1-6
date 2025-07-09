@@ -16,7 +16,7 @@
     }
     .bg-lateral {
       flex: 1;
-      background-image: url('imagens/ChatGPT Image 8 de jul. de 2025, 16_53_20.png');
+      background-image: url('imagens/fundo-maos.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -154,12 +154,13 @@
     <header>
       <div class="top-bar">
         <img src="imagens/adventista.png" class="logo" alt="Logo Adventista" />
-        <img src="imagens/usar.png" class="user-icon" alt="Ícone de Usuário" />
+        <img src="imagens/usuar.png" class="user-icon" alt="Ícone de Usuário" />
       </div>
       <img src="imagens/adra.png" class="adra-logo" alt="Logo ADRA" />
     </header>
     <main>
       <button class="btn" onclick="abrirModal('transferencia')">Doação por transferência</button>
+      <button class="btn" onclick="abrirModal('itensFisicos')">Lista de itens que você pode doar</button>
       <p class="instruction">Encontre a unidade ADRA ou ASA mais próxima</p>
       <div id="map"></div>
     </main>
@@ -186,11 +187,28 @@
   <script>
     const modais = {
       transferencia: "<h2>Doação por Transferência</h2><p>Banco do Brasil | Agência 1234-5 | Conta 67890-1<br>PIX: pix@adra.org.br</p><p>Após a transferência, envie o comprovante para doacoes@adra.org.br ou entregue pessoalmente na unidade mais próxima.</p>",
-      desastres: "<h2>Resposta a Desastres</h2><p>A ADRA atua imediatamente em regiões afetadas por enchentes, secas, terremotos e outras catástrofes. A organização fornece alimentação, abrigo, kits de higiene e apoio emocional em parceria com órgãos locais.</p><p>Além da resposta imediata, a ADRA também trabalha na reconstrução de comunidades, oferecendo suporte contínuo que ajuda a restaurar a dignidade e a segurança de famílias afetadas.</p>",
-      educacao: "<h2>Educação</h2><p>Projetos da ADRA visam promover educação básica, alfabetização de adultos e capacitação profissional. São oferecidos cursos gratuitos e reforço escolar para crianças em situação de vulnerabilidade.</p><p>Essas ações ampliam as oportunidades no mercado de trabalho e contribuem para o desenvolvimento social das comunidades atendidas.</p>",
-      alimentar: "<h2>Segurança Alimentar</h2><p>A ADRA combate a fome por meio da distribuição de cestas básicas, refeições e apoio a hortas urbanas e comunitárias.</p><p>Essas medidas garantem dignidade e nutrição a milhares de famílias em risco social, promovendo a autossuficiência a longo prazo.</p>",
-      feminino: "<h2>Empoderamento Feminino</h2><p>A ADRA desenvolve programas de apoio psicológico, capacitação profissional e microcrédito para mulheres em situação de risco.</p><p>O objetivo é promover a independência financeira, combater a violência doméstica e ampliar o protagonismo feminino em suas comunidades.</p>",
-      refugiados: "<h2>Refugiados</h2><p>Com atuação nacional, a ADRA oferece suporte a migrantes e refugiados, auxiliando com documentação, abrigo, alimentação e encaminhamento ao trabalho.</p><p>O atendimento é feito de forma humanizada, respeitando as culturas e assegurando dignidade no processo de reintegração social.</p>"
+      itensFisicos: `<h2>O que posso doar?</h2>
+        <p><strong>Itens Aceitos:</strong></p>
+        <ul style="margin-left: 20px; margin-bottom: 10px; font-size: 15px;">
+          <li>Roupas em bom estado (sem rasgos ou manchas)</li>
+          <li>Agasalhos e cobertores limpos</li>
+          <li>Calçados em boas condições</li>
+          <li>Produtos de higiene e limpeza novos</li>
+          <li>Alimentos não perecíveis dentro da validade</li>
+        </ul>
+        <p><strong>Itens Não Aceitos:</strong></p>
+        <ul style="margin-left: 20px; margin-bottom: 10px; font-size: 15px;">
+          <li>Roupas íntimas usadas</li>
+          <li>Alimentos vencidos ou abertos</li>
+          <li>Produtos quebrados ou sem uso possível</li>
+          <li>Medicamentos vencidos</li>
+        </ul>
+        <p>Se tiver dúvidas, entre em contato com a unidade ADRA mais próxima.</p>`,
+      desastres: "<h2>Resposta a Desastres</h2><p>A ADRA atua imediatamente em regiões afetadas por desastres naturais com apoio emergencial e reconstrução.</p>",
+      educacao: "<h2>Educação</h2><p>Promove cursos, reforço escolar e alfabetização em comunidades vulneráveis.</p>",
+      alimentar: "<h2>Segurança Alimentar</h2><p>Distribui cestas básicas e incentiva hortas comunitárias para combater a fome.</p>",
+      feminino: "<h2>Empoderamento Feminino</h2><p>Oferece apoio psicológico, profissionalização e microcrédito para mulheres.</p>",
+      refugiados: "<h2>Refugiados</h2><p>Atende migrantes com abrigo, documentação, alimentação e acolhimento humanizado.</p>"
     };
 
     function abrirModal(tipo) {
@@ -202,28 +220,65 @@
       document.getElementById('modal').style.display = 'none';
     }
 
+    // Mapa
     const map = L.map('map').setView([-15.77972, -47.92972], 4);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    const unidades = [
-      { nome: "ADRA DF", lat: -15.8056, lng: -47.8926 },
-      { nome: "ADRA SP", lat: -22.5720, lng: -47.1750 },
-      { nome: "ASA Porto Alegre", lat: -30.0346, lng: -51.2177 },
-      { nome: "ASA Manaus", lat: -3.1019, lng: -60.025 },
-      { nome: "ADRA RJ", lat: -22.9121, lng: -43.1750 },
-      { nome: "ASA Curitiba", lat: -25.4284, lng: -49.2733 },
-      { nome: "ADRA PA", lat: -1.3554, lng: -48.3730 }
-    ];
-
-    unidades.forEach(u => {
-      L.marker([u.lat, u.lng]).addTo(map).bindPopup(u.nome);
+    // Ícones personalizados
+    const iconeIgreja = L.icon({
+      iconUrl: 'imagens/asa.jpg',
+      iconSize: [32, 32],
     });
+
+    const iconeAdra = L.icon({
+      iconUrl: 'imagens/adra.jpg',
+      iconSize: [32, 32],
+    });
+
+    function buscarPOIs(lat, lng) {
+      const overpassQuery = `
+        [out:json][timeout:20];
+        (
+          node["amenity"="place_of_worship"]["denomination"="seventh_day_adventist"](around:50000, ${lat}, ${lng});
+          node["name"~"ADRA", i](around:50000, ${lat}, ${lng});
+        );
+        out center;
+      `;
+
+      fetch('https://overpass-api.de/api/interpreter', {
+        method: 'POST',
+        body: overpassQuery.trim()
+      })
+      .then(res => res.json())
+      .then(data => {
+        const igrejas = data.elements.filter(el => el.tags.amenity === "place_of_worship");
+        const adras = data.elements.filter(el => /ADRA/i.test(el.tags.name || ''));
+
+        igrejas.slice(0, 10).forEach(node => {
+          L.marker([node.lat, node.lon], { icon: iconeIgreja })
+            .addTo(map)
+            .bindPopup(node.tags.name || "Igreja Adventista");
+        });
+
+        if (adras.length > 0) {
+          const centro = adras[0];
+          L.marker([centro.lat, centro.lon], { icon: iconeAdra })
+            .addTo(map)
+            .bindPopup(centro.tags.name || "Centro ADRA");
+        }
+      })
+      .catch(console.error);
+    }
 
     navigator.geolocation.getCurrentPosition(
       pos => {
         const { latitude, longitude } = pos.coords;
-        L.marker([latitude, longitude]).addTo(map).bindPopup("Você está aqui").openPopup();
-        map.setView([latitude, longitude], 10);
+        L.marker([latitude, longitude])
+          .addTo(map)
+          .bindPopup("Você está aqui")
+          .openPopup();
+        map.setView([latitude, longitude], 12);
+        buscarPOIs(latitude, longitude);
       },
       err => console.warn("Geolocalização não permitida")
     );
