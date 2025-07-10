@@ -120,6 +120,16 @@
       font-size: 22px;
       margin-bottom: 15px;
     }
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -154,7 +164,7 @@
     <header>
       <div class="top-bar">
         <img src="imagens/adventista.png" class="logo" alt="Logo Adventista" />
-        <img src="imagens/usuar.png" class="user-icon" alt="Ícone de Usuário" />
+        <img src="imagens/usuar.png" class="user-icon" alt="Ícone de Usuário" onclick="abrirModalUsuario()" id="iconeUsuario" />
       </div>
       <img src="imagens/adra.png" class="adra-logo" alt="Logo ADRA" />
     </header>
@@ -282,6 +292,92 @@
       },
       err => console.warn("Geolocalização não permitida")
     );
-  </script>
+
+  </script><script>
+  function abrirModalUsuario() {
+    const nome = localStorage.getItem("nome");
+    const email = localStorage.getItem("email");
+    const cpf = localStorage.getItem("cpf");
+    const endereco = localStorage.getItem("endereco");
+    const doacoes = localStorage.getItem("doacoes") || 0;
+
+    let conteudo;
+
+    if (email && nome) {
+      conteudo = `
+        <h2>Seus Dados</h2>
+        <p><strong>Nome:</strong> ${nome}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>CPF:</strong> ${cpf}</p>
+        <p><strong>Endereço:</strong> ${endereco}</p>
+        <p><strong>Nº de Doações:</strong> ${doacoes}</p>
+      `;
+    } else {
+      conteudo = `
+        <h2>Você ainda não está cadastrado</h2>
+        <p>Clique abaixo para se cadastrar como doador:</p>
+        <button class="btn" onclick="abrirModalCadastroDoador()">Cadastrar-se</button>
+      `;
+    }
+
+    document.getElementById("conteudoUsuario").innerHTML = conteudo;
+    document.getElementById("modalUsuario").style.display = "flex";
+  }
+
+  function fecharModalUsuario() {
+    document.getElementById("modalUsuario").style.display = "none";
+  }
+
+  function abrirModalCadastroDoador() {
+    fecharModalUsuario();
+    document.getElementById("modalCadastro").style.display = "flex";
+  }
+
+   function cadastrarUsuario(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById('cadNome').value;
+    const cpf = document.getElementById('cadCpf').value;
+    const endereco = document.getElementById('cadEndereco').value;
+    const email = document.getElementById('cadEmail').value;
+    const senha = document.getElementById('cadSenha').value;
+
+    localStorage.setItem('nome', nome);
+    localStorage.setItem('cpf', cpf);
+    localStorage.setItem('endereco', endereco);
+    localStorage.setItem('email', email);
+    localStorage.setItem('senha', senha);
+    localStorage.setItem('doacoes', 0); // inicializa com 0
+
+    alert('Cadastro realizado com sucesso!');
+    document.getElementById('modalCadastro').style.display = 'none';
+  }
+</script>
+
+
+  <div id="modalUsuario" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="fecharModalUsuario()">&times;</span>
+    <div id="conteudoUsuario"></div>
+  </div>
+</div>
+
+
+<div id="modalCadastro" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="document.getElementById('modalCadastro').style.display='none'">&times;</span>
+    <h2>Cadastrar como Doador</h2>
+    <form onsubmit="cadastrarUsuario(event)">
+      <input type="text" placeholder="Nome completo" id="cadNome" required class="input" />
+      <input type="text" placeholder="CPF" id="cadCpf" required class="input" />
+      <input type="text" placeholder="Endereço" id="cadEndereco" required class="input" />
+      <input type="email" placeholder="E-mail" id="cadEmail" required class="input" />
+      <input type="password" placeholder="Senha" id="cadSenha" required class="input" />
+      <button type="submit" class="btn">Cadastrar</button>
+    </form>
+  </div>
+</div>
+
+
 </body>
 </html>

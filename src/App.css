@@ -20,11 +20,12 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background-image: url('./imagens/adra-fundo.png');
+  background-image: url('/imagens/fundo_pgn_inicial.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
 
 /* Container principal */
 .container {
