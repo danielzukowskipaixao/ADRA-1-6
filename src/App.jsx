@@ -24,13 +24,6 @@ function App() {
     }
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    localStorage.setItem('tipoUsuario', tipoUsuario);
-    alert('Cadastro enviado!');
-    window.location.href = '/pgn_verificacao.html';
-  };
-
   return (
     <div className="min-h-screen flex flex-col justify-between font-[Poppins] bg-[#007A5E]">
 
